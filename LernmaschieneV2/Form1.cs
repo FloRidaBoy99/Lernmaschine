@@ -11,6 +11,7 @@ namespace LernmaschieneV2
 	{
 
 		private XDocument xdoc;
+		private string filename = "";
 
 		public Form1()
 		{
@@ -25,6 +26,7 @@ namespace LernmaschieneV2
 			if (this.openFileDialog1.ShowDialog() == DialogResult.OK && this.openFileDialog1.FileName != "")
 			{
 				this.xdoc = XDocument.Load(this.openFileDialog1.FileName);
+				this.filename = this.openFileDialog1.FileName;
 			}
 
 			this.setMenuStrip(true);
@@ -36,6 +38,7 @@ namespace LernmaschieneV2
 			if (this.saveFileDialog1.ShowDialog() == DialogResult.OK && this.saveFileDialog1.FileName != "")
 			{
 				this.xdoc.Save(this.saveFileDialog1.FileName);
+				this.filename = this.saveFileDialog1.FileName;
 			}
 
 		}
@@ -248,6 +251,38 @@ namespace LernmaschieneV2
 		private void comboBoxKasten_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			this.fillListBoxes();
+		}
+
+		private void buttonSpeichern_Click(object sender, EventArgs e)
+		{
+			if (this.textBoxRueckseite.Text == "" || this.textBoxVorderseite.Text == "")
+			{
+				return;
+			}
+
+			this.xdoc.Descendants("Fach")
+				.Where(
+					o => o.Attribute("Bezeichnung").Value.ToString() == this.comboBoxFach.SelectedValue.ToString()
+				)
+				.Descendants("Kasten")
+				.Where(a => a.Attribute("Nr").Value.ToString() == "1")
+				.First()
+				.Add(
+					new XElement("Karteikarte",
+						new XElement("Vorderseite", this.textBoxVorderseite.Text),
+						new XElement("Rueckseite", this.textBoxRueckseite.Text)
+					)
+				);
+			this.fillListBoxes();
+			this.saveXML();
+		}
+
+		private void saveXML()
+		{
+			if (this.filename != "")
+			{
+				this.xdoc.Save(this.filename);
+			}
 		}
 
 	}
