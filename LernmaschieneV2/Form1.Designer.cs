@@ -226,6 +226,7 @@
 			this.buttonPruefen.TabIndex = 11;
 			this.buttonPruefen.Text = "Prüfen";
 			this.buttonPruefen.UseVisualStyleBackColor = true;
+			this.buttonPruefen.Click += new System.EventHandler(this.buttonPruefen_Click);
 			// 
 			// buttonBeenden
 			// 
@@ -254,6 +255,7 @@
 			this.buttonLoeschen.TabIndex = 14;
 			this.buttonLoeschen.Text = "Löschen";
 			this.buttonLoeschen.UseVisualStyleBackColor = true;
+			this.buttonLoeschen.Click += new System.EventHandler(this.buttonLoeschen_Click);
 			// 
 			// textBoxVorderseite
 			// 
@@ -304,6 +306,7 @@
 			this.listBoxVorderseite.Name = "listBoxVorderseite";
 			this.listBoxVorderseite.Size = new System.Drawing.Size(120, 95);
 			this.listBoxVorderseite.TabIndex = 20;
+			this.listBoxVorderseite.SelectedIndexChanged += new System.EventHandler(this.listBoxVorderseite_SelectedIndexChanged);
 			// 
 			// listBoxRueckseite
 			// 

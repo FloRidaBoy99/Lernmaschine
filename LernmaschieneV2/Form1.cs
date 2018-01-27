@@ -10,8 +10,8 @@ namespace LernmaschieneV2
 	public partial class Form1 : Form
 	{
 
-		private XDocument xdoc;
-		private string filename = "";
+		private XDoc xdoc;
+		private string layout = "";
 
 		public Form1()
 		{
@@ -25,8 +25,7 @@ namespace LernmaschieneV2
 		{
 			if (this.openFileDialog1.ShowDialog() == DialogResult.OK && this.openFileDialog1.FileName != "")
 			{
-				this.xdoc = XDocument.Load(this.openFileDialog1.FileName);
-				this.filename = this.openFileDialog1.FileName;
+				this.xdoc = new XDoc(this.openFileDialog1.FileName);
 			}
 
 			this.setMenuStrip(true);
@@ -38,51 +37,13 @@ namespace LernmaschieneV2
 			if (this.saveFileDialog1.ShowDialog() == DialogResult.OK && this.saveFileDialog1.FileName != "")
 			{
 				this.xdoc.Save(this.saveFileDialog1.FileName);
-				this.filename = this.saveFileDialog1.FileName;
 			}
 
 		}
 
 		private void lernmaschieneToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			this.xdoc = new XDocument(
-				new XElement("Lernmaschiene",
-					new XElement("Fach",
-						new XAttribute("Bezeichnung", "Englisch"),
-						new XElement("Kasten",
-							new XAttribute("Nr", "1"),
-							new XElement("Karte",
-								new XElement("Vorderseite", "Haus"),
-								new XElement("Rueckseite", "House")
-							)
-						),
-						new XElement("Kasten",
-							new XAttribute("Nr", "2"),
-							new XElement("Karte",
-								new XElement("Vorderseite", "Kacken"),
-								new XElement("Rueckseite", "Shit")
-							)
-						)
-					),
-					new XElement("Fach",
-						new XAttribute("Bezeichnung", "Deutsch"),
-						new XElement("Kasten",
-							new XAttribute("Nr", "3"),
-							new XElement("Karte",
-								new XElement("Vorderseite", "Emilia Galotti"),
-								new XElement("Rueckseite", "Tolles Buch")
-							)
-						),
-						new XElement("Kasten",
-							new XAttribute("Nr", "6"),
-							new XElement("Karte",
-								new XElement("Vorderseite", "Haus"),
-								new XElement("Rueckseite", "House")
-							)
-						)
-					)
-				)
-			);
+			this.xdoc = new XDoc();
 			this.setMenuStrip(true);
 			this.editLayout();
 			this.fillComboboxFach();
@@ -103,87 +64,6 @@ namespace LernmaschieneV2
 			this.lernenLayout();
 		}
 
-		private void clearLayout()
-		{
-			this.labelAuswahlFach.Visible = false;
-			this.labelAuswahlKasten.Visible = false;
-			this.labelListRueckseite.Visible = false;
-			this.labelListVorderseite.Visible = false;
-			this.labelMessage.Visible = false;
-			this.labelRueckseite.Visible = false;
-			this.labelVorderseite.Visible = false;
-
-			this.comboBoxFach.Visible = false;
-			this.comboBoxKasten.Visible = false;
-
-			this.listBoxRueckseite.Visible = false;
-			this.listBoxVorderseite.Visible = false;
-
-			this.textBoxRueckseite.Visible = false;
-			this.textBoxVorderseite.Visible = false;
-
-			this.buttonZurueck.Visible = false;
-			this.buttonSpeichern.Visible = false;
-			this.buttonLoeschen.Visible = false;
-			this.buttonPruefen.Visible = false;
-			this.buttonBeenden.Visible = true;
-			this.buttonWeiter.Visible = false;
-		}
-
-		private void editLayout()
-		{
-			this.labelAuswahlFach.Visible = true;
-			this.labelAuswahlKasten.Visible = true;
-			this.labelListRueckseite.Visible = true;
-			this.labelListVorderseite.Visible = true;
-			this.labelMessage.Visible = false;
-			this.labelRueckseite.Visible = true;
-			this.labelVorderseite.Visible = true;
-
-			this.comboBoxFach.Visible = true;
-			this.comboBoxKasten.Visible = true;
-
-			this.listBoxRueckseite.Visible = true;
-			this.listBoxVorderseite.Visible = true;
-
-			this.textBoxRueckseite.Visible = true;
-			this.textBoxVorderseite.Visible = true;
-
-			this.buttonZurueck.Visible = false;
-			this.buttonSpeichern.Visible = true;
-			this.buttonLoeschen.Visible = true;
-			this.buttonPruefen.Visible = false;
-			this.buttonBeenden.Visible = true;
-			this.buttonWeiter.Visible = false;
-		}
-
-		private void lernenLayout()
-		{
-			this.labelAuswahlFach.Visible = true;
-			this.labelAuswahlKasten.Visible = true;
-			this.labelListRueckseite.Visible = false;
-			this.labelListVorderseite.Visible = false;
-			this.labelMessage.Visible = false;
-			this.labelRueckseite.Visible = true;
-			this.labelVorderseite.Visible = true;
-
-			this.comboBoxFach.Visible = true;
-			this.comboBoxKasten.Visible = true;
-
-			this.listBoxRueckseite.Visible = false;
-			this.listBoxVorderseite.Visible = false;
-
-			this.textBoxRueckseite.Visible = true;
-			this.textBoxVorderseite.Visible = true;
-
-			this.buttonZurueck.Visible = true;
-			this.buttonSpeichern.Visible = false;
-			this.buttonLoeschen.Visible = false;
-			this.buttonPruefen.Visible = true;
-			this.buttonBeenden.Visible = true;
-			this.buttonWeiter.Visible = true;
-		}
-
 		private void setMenuStrip(bool mode)
 		{
 			this.speichernToolStripMenuItem.Enabled = mode;
@@ -194,7 +74,7 @@ namespace LernmaschieneV2
 
 		private void fillComboboxFach()
 		{
-			IEnumerable<XElement> faecher = this.xdoc.Element("Lernmaschiene").Elements();
+			IEnumerable<XElement> faecher = this.xdoc.getFaecher();
 			List<string> faecherlist = new List<string>();
 
 			foreach (XElement fach in faecher)
@@ -206,13 +86,9 @@ namespace LernmaschieneV2
 
 		private void fillComboboxKasten()
 		{
+			IEnumerable<XElement> alleKaesten = this.xdoc.getKaestenInFach();
 			List<string> kastenlist = new List<string>();
-
-			IEnumerable<XElement> alleKaesten = xdoc
-				.Descendants("Fach")
-				.Where(o => o.Attribute("Bezeichnung").Value == this.comboBoxFach.SelectedValue.ToString())
-				.Descendants("Kasten");
-
+			
 			foreach (XElement kasten in alleKaesten)
 			{
 				kastenlist.Add(kasten.Attribute("Nr").Value);
@@ -226,12 +102,7 @@ namespace LernmaschieneV2
 			this.listBoxRueckseite.Items.Clear();
 			this.listBoxVorderseite.Items.Clear();
 
-			IEnumerable<XElement> karten = this.xdoc
-				.Descendants("Fach")
-				.Where(o => o.Attribute("Bezeichnung").Value == this.comboBoxFach.SelectedValue.ToString())
-				.Descendants("Kasten")
-				.Where(o => o.Attribute("Nr").Value == this.comboBoxKasten.SelectedValue.ToString())
-				.Elements();
+			IEnumerable<XElement> karten = this.xdoc.getKarten();
 
 			foreach (var karte in karten)
 			{
@@ -245,11 +116,13 @@ namespace LernmaschieneV2
 
 		private void comboBoxFach_SelectedIndexChanged(object sender, EventArgs e)
 		{
+			this.xdoc.Fach = this.comboBoxFach.SelectedValue.ToString();
 			this.fillComboboxKasten();
 		}
 
 		private void comboBoxKasten_SelectedIndexChanged(object sender, EventArgs e)
 		{
+			this.xdoc.Kasten = this.comboBoxKasten.SelectedValue.ToString();
 			this.fillListBoxes();
 		}
 
@@ -260,30 +133,109 @@ namespace LernmaschieneV2
 				return;
 			}
 
-			this.xdoc.Descendants("Fach")
-				.Where(
-					o => o.Attribute("Bezeichnung").Value.ToString() == this.comboBoxFach.SelectedValue.ToString()
-				)
-				.Descendants("Kasten")
-				.Where(a => a.Attribute("Nr").Value.ToString() == "1")
-				.First()
-				.Add(
-					new XElement("Karteikarte",
-						new XElement("Vorderseite", this.textBoxVorderseite.Text),
-						new XElement("Rueckseite", this.textBoxRueckseite.Text)
-					)
-				);
+			string fach = this.comboBoxFach.SelectedValue.ToString();
+
+			XElement karte = new XElement("Karte",
+				new XElement("Vorderseite", this.textBoxVorderseite.Text),
+				new XElement("Rueckseite", this.textBoxRueckseite.Text)
+			);
+
+			if (this.xdoc.getKastenInFach(fach, "1").Count() != 1)
+			{
+				this.xdoc.addKasten(fach, 1);
+				this.fillComboboxKasten();
+			}
+
+			this.xdoc.addKarte(fach, "1", karte);
+
 			this.fillListBoxes();
-			this.saveXML();
+			this.xdoc.Save();
 		}
 
-		private void saveXML()
+		private void buttonLoeschen_Click(object sender, EventArgs e)
 		{
-			if (this.filename != "")
+			this.removeKarte();
+			this.fillListBoxes(); 
+		}
+
+		private void removeKarte()
+		{
+			string vs = this.listBoxVorderseite.Text;
+			string rs = this.listBoxRueckseite.Text;
+			
+			this.xdoc.removeKarte(vs, rs);
+		}
+
+		private	void showKarte()
+		{
+			string vs = this.listBoxVorderseite.Text;
+			this.listBoxRueckseite.SelectedIndex = this.listBoxVorderseite.SelectedIndex;
+			string rs = this.listBoxRueckseite.Text;
+
+			this.textBoxVorderseite.Text = vs;
+			this.textBoxRueckseite.Text = rs;
+		}
+
+		private void listBoxVorderseite_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (this.layout == "edit")
 			{
-				this.xdoc.Save(this.filename);
+				this.showKarte();
 			}
 		}
 
+		private void lernen()
+		{
+			this.textBoxVorderseite.Text = "";
+			this.textBoxRueckseite.Text = "";
+			try
+			{
+				XElement karte = this.xdoc.getKarten().First();
+
+				this.textBoxVorderseite.Text = karte.Element("Vorderseite").Value;
+			}
+			catch (InvalidOperationException e)
+			{
+				Debug.WriteLine(e.Message);
+				this.labelMessage.Text = "Es gab einen Fehler. Hast du bereits Karten erstellt?";
+			}
+		}
+
+		private void pruefen()
+		{
+			try
+			{
+				XElement karte = this.xdoc.getKarten().First();
+
+				string vorderseite = karte.Element("Vorderseite").Value;
+				string rueckseite = karte.Element("Rueckseite").Value;
+
+
+				if (vorderseite == this.textBoxVorderseite.Text && rueckseite == this.textBoxRueckseite.Text)
+				{
+					this.labelMessage.Text = "Richtig!";
+					this.xdoc.addKarte("2", karte);
+					karte.Remove();
+					this.xdoc.Save();
+					this.lernen();
+				}
+				else
+				{
+					this.textBoxRueckseite.Text = "";
+					this.labelMessage.Text = "Warum haben Sie das geschrieben? Wie war das motiviert?";
+				}
+			}
+			catch (InvalidOperationException e)
+			{
+				Debug.WriteLine(e.Message);
+				this.labelMessage.Text = "Es gab einen Fehler. Überprüfe ob Karten vorhanden sind.";
+			}
+
+		}
+
+		private void buttonPruefen_Click(object sender, EventArgs e)
+		{
+			this.pruefen();
+		}
 	}
 }
