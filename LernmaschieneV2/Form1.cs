@@ -211,7 +211,7 @@ namespace LernmaschieneV2
 				string rueckseite = karte.Element("Rueckseite").Value;
 
 
-				if (vorderseite == this.textBoxVorderseite.Text && rueckseite == this.textBoxRueckseite.Text)
+				if (vorderseite.ToLower() == this.textBoxVorderseite.Text.ToLower() && rueckseite.ToLower() == this.textBoxRueckseite.Text.ToLower())
 				{
 					this.labelMessage.Text = "Richtig!";
 					this.xdoc.addKarte("2", karte);
@@ -236,6 +236,16 @@ namespace LernmaschieneV2
 		private void buttonPruefen_Click(object sender, EventArgs e)
 		{
 			this.pruefen();
+		}
+
+		private void buttonWeiter_Click(object sender, EventArgs e)
+		{
+			this.listBoxVorderseite.SelectedIndex++;
+		}
+
+		private void buttonZurueck_Click(object sender, EventArgs e)
+		{
+			this.listBoxVorderseite.SelectedIndex--;
 		}
 	}
 }

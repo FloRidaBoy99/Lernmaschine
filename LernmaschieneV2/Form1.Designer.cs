@@ -83,7 +83,7 @@
             this.speichernToolStripMenuItem,
             this.öffnenToolStripMenuItem});
 			this.dateiToolStripMenuItem.Name = "dateiToolStripMenuItem";
-			this.dateiToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+			this.dateiToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
 			this.dateiToolStripMenuItem.Text = "Datei";
 			// 
 			// neuToolStripMenuItem
@@ -91,48 +91,48 @@
 			this.neuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lernmaschieneToolStripMenuItem});
 			this.neuToolStripMenuItem.Name = "neuToolStripMenuItem";
-			this.neuToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+			this.neuToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.neuToolStripMenuItem.Text = "Neu";
 			// 
 			// lernmaschieneToolStripMenuItem
 			// 
 			this.lernmaschieneToolStripMenuItem.Name = "lernmaschieneToolStripMenuItem";
-			this.lernmaschieneToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+			this.lernmaschieneToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
 			this.lernmaschieneToolStripMenuItem.Text = "Lernmaschiene";
 			this.lernmaschieneToolStripMenuItem.Click += new System.EventHandler(this.lernmaschieneToolStripMenuItem_Click);
 			// 
 			// speichernToolStripMenuItem
 			// 
 			this.speichernToolStripMenuItem.Name = "speichernToolStripMenuItem";
-			this.speichernToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+			this.speichernToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.speichernToolStripMenuItem.Text = "Speichern";
 			this.speichernToolStripMenuItem.Click += new System.EventHandler(this.speichernToolStripMenuItem_Click);
 			// 
 			// öffnenToolStripMenuItem
 			// 
 			this.öffnenToolStripMenuItem.Name = "öffnenToolStripMenuItem";
-			this.öffnenToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+			this.öffnenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.öffnenToolStripMenuItem.Text = "Öffnen";
 			this.öffnenToolStripMenuItem.Click += new System.EventHandler(this.öffnenToolStripMenuItem_Click);
 			// 
 			// editToolStripMenuItem
 			// 
 			this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-			this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+			this.editToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
 			this.editToolStripMenuItem.Text = "Edit";
 			this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
 			// 
 			// lernenToolStripMenuItem
 			// 
 			this.lernenToolStripMenuItem.Name = "lernenToolStripMenuItem";
-			this.lernenToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+			this.lernenToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
 			this.lernenToolStripMenuItem.Text = "Lernen";
 			this.lernenToolStripMenuItem.Click += new System.EventHandler(this.lernenToolStripMenuItem_Click);
 			// 
 			// statistikToolStripMenuItem
 			// 
 			this.statistikToolStripMenuItem.Name = "statistikToolStripMenuItem";
-			this.statistikToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+			this.statistikToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
 			this.statistikToolStripMenuItem.Text = "Statistik";
 			// 
 			// toolStripMenuItem1
@@ -207,6 +207,7 @@
 			this.buttonZurueck.TabIndex = 9;
 			this.buttonZurueck.Text = "Zurück";
 			this.buttonZurueck.UseVisualStyleBackColor = true;
+			this.buttonZurueck.Click += new System.EventHandler(this.buttonZurueck_Click);
 			// 
 			// buttonSpeichern
 			// 
@@ -246,6 +247,7 @@
 			this.buttonWeiter.TabIndex = 13;
 			this.buttonWeiter.Text = "Weiter";
 			this.buttonWeiter.UseVisualStyleBackColor = true;
+			this.buttonWeiter.Click += new System.EventHandler(this.buttonWeiter_Click);
 			// 
 			// buttonLoeschen
 			// 

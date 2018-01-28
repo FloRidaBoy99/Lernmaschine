@@ -57,12 +57,12 @@ namespace LernmaschieneV2
 			this.textBoxRueckseite.Visible = true;
 			this.textBoxVorderseite.Visible = true;
 
-			this.buttonZurueck.Visible = false;
+			this.buttonZurueck.Visible = true;
 			this.buttonSpeichern.Visible = true;
 			this.buttonLoeschen.Visible = true;
 			this.buttonPruefen.Visible = false;
 			this.buttonBeenden.Visible = true;
-			this.buttonWeiter.Visible = false;
+			this.buttonWeiter.Visible = true;
 
 			this.layout = "edit";
 		}
