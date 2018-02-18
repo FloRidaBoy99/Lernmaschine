@@ -223,7 +223,7 @@ namespace LernmaschieneV2
 				else
 				{
 					this.textBoxRueckseite.Text = "";
-					this.labelMessage.Text = "Warum haben Sie das geschrieben? Wie war das motiviert?";
+					this.labelMessage.Text = "Das war leider falsch. Versuchen Sie es nochmal";
 				}
 			}
 			catch (InvalidOperationException e)
