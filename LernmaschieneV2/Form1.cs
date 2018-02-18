@@ -163,7 +163,7 @@ namespace LernmaschieneV2
 			string vs = this.listBoxVorderseite.Text;
 			string rs = this.listBoxRueckseite.Text;
 			
-			this.xdoc.removeKarte(vs, rs);
+			this.xdoc.removeKarte("1", vs, rs);
 		}
 
 		private	void showKarte()
@@ -214,9 +214,10 @@ namespace LernmaschieneV2
 				if (vorderseite.ToLower() == this.textBoxVorderseite.Text.ToLower() && rueckseite.ToLower() == this.textBoxRueckseite.Text.ToLower())
 				{
 					this.labelMessage.Text = "Richtig!";
-					this.xdoc.addKarte("2", karte);
 					karte.Remove();
+					this.xdoc.addKarte("2", karte);
 					this.xdoc.Save();
+					this.fillListBoxes();
 					this.lernen();
 				}
 				else

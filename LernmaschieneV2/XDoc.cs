@@ -42,12 +42,12 @@ namespace LernmaschieneV2
 						new XElement("Kasten",
 							new XAttribute("Nr", "1"),
 							new XElement("Karte",
-								new XElement("Vorderseite", "Haus"),
-								new XElement("Rueckseite", "House")
+								new XElement("Vorderseite", "Klasse"),
+								new XElement("Rueckseite", "Class")
 							),
 							new XElement("Karte",
-								new XElement("Vorderseite", "Katze"),
-								new XElement("Rueckseite", "Cat")
+								new XElement("Vorderseite", "Hund"),
+								new XElement("Rueckseite", "Dog")
 							)
 						),
 						new XElement("Kasten",
